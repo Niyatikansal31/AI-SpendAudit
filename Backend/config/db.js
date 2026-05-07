@@ -1,3 +1,14 @@
-const mongoose=require("mongoose")
+import mongoose from "mongoose"
 
-mongoose.connect(mongodb_URl)
+import { config } from "dotenv"
+const ConnectDB=async()=>{
+    try{
+        await mongoose.connect(process.env.MONGODB_URI)
+        console.log("Database Connected!")
+    }catch(err){
+        console.log("Error Occored!Cannot Connect Database!")
+        process.exit(1)
+    }
+}
+
+export default ConnectDB;
