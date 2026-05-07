@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
-import Report from "./middlewares/report.js";
-import Lead from "./middlewares/lead.js";
+import Report from "./models/Report.js";
+import Lead from "./models/lead.js";
 import ConnectDB from "./config/db.js";
 import dotenv from "dotenv"
 dotenv.config()
