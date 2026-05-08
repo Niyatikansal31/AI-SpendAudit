@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import Report from "./models/Report.js";
-import Lead from "./models/lead.js";
+import Lead from "./models/Lead.js";
 import ConnectDB from "./config/db.js";
 import dotenv from "dotenv"
 dotenv.config()
@@ -16,4 +16,4 @@ app.get('/test',(req,res)=>{
 })
 ConnectDB()
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)

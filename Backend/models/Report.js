@@ -7,6 +7,7 @@ const ReportSchema=new mongoose.Schema(
             required: true,
             unique: true
         },
+        useCase: String,
         tools: {
             type: [
             {
@@ -30,7 +31,8 @@ const ReportSchema=new mongoose.Schema(
         recommendations: {
             type: [
                 {
-                    currenPlan:  String,
+                    toolName: String,
+                    currentPlan:  String,
                     suggestedPlan: String,
                     savings:  Number,
                     reason:  String
