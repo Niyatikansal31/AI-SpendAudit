@@ -4,16 +4,14 @@ import Report from "./models/Report.js";
 import Lead from "./models/Lead.js";
 import ConnectDB from "./config/db.js";
 import dotenv from "dotenv"
+import ReportRoute from "./routes/reportRoutes.js";
+
 dotenv.config()
 
 const app=express();
 app.use(express.json())
 app.use(cors())
-app.get('/test',(req,res)=>{
-    res.json({
-        msg: "Backend Running!"
-    })
-})
+app.use('/api/reports',ReportRoute)
 ConnectDB()
 
 app.listen(process.env.PORT || 3000)
