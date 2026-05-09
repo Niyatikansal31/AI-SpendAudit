@@ -5,9 +5,7 @@ import Report from "../models/Report.js";
 import crypto from "crypto"
 
 const createReport=async (req,res)=>{
-    const tools=req.body.tools;
-    const teamSize=req.body.teamSize;
-    const useCase=req.body.useCase;
+    const {tools, teamSize, useCase} =req.body;
 
     if(!tools || !teamSize || !useCase){
         res.status(STATUS_CODES.BAD_REQUEST).json({

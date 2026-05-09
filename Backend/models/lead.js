@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 
 const LeadSchema=new mongoose.Schema(
     {
+        reportId: String,
         email: {
             type: String,
             required: true,
