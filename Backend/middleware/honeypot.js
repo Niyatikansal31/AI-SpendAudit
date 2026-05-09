@@ -8,12 +8,14 @@ const honeyPot=(req,res,next)=>{
             next();
         }else{
             res.status(STATUS_CODES.BAD_REQUEST).json({
+                success: false,
                 msg: "Request Rejected!"
             })
             return;
         }
     }catch(err){
         res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            success: false,
             msg: "Error Occured!Please try again"
         })
         return;

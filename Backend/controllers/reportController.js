@@ -9,6 +9,7 @@ const createReport=async (req,res)=>{
 
     if(!tools || !teamSize || !useCase){
         res.status(STATUS_CODES.BAD_REQUEST).json({
+            success: false,
             msg: "Please enter complete details!"
         })
         return;
@@ -33,10 +34,12 @@ const createReport=async (req,res)=>{
 
         await report.save();
         res.status(STATUS_CODES.CREATED).json({
+            success: true,
             report
         })
     }catch(err){
         res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            success: false,
             msg: "Error displaying report!"
         })
         return;
@@ -48,6 +51,7 @@ const getReportById=async (req,res)=>{
 
     if(!id){
         res.status(STATUS_CODES.BAD_REQUEST).json({
+            success: false,
             msg: "Please enter a valid id."
         })
         return;
@@ -56,15 +60,18 @@ const getReportById=async (req,res)=>{
         const repo=await Report.findOne({publicId: id});
         if(!repo){
             res.status(STATUS_CODES.NOT_FOUND).json({
+                success: false,
                 msg: "Could not find report with this id!"
             })
             return;
         }
         res.status(STATUS_CODES.OK).json({
+            success: true,
             report: repo
         })
     }catch(err){
         res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            success: false,
             msg: "Some error occured while fetching the report"
         })
         return;

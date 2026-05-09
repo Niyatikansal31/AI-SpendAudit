@@ -6,6 +6,7 @@ const createLead=async(req,res)=>{
     
     if(!email || !reportId){
         res.status(STATUS_CODES.BAD_REQUEST).json({
+            success: false,
             msg: "Please enter complete details!"
         })
         return;
@@ -21,10 +22,12 @@ const createLead=async(req,res)=>{
         })
         await newLead.save()
         res.status(STATUS_CODES.CREATED).json({
+            success: true,
             newLead
         })
     }catch(err){
         res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
+            success: false,
             msg: "Error Saving details.Please try Again!"
         })
         return;
