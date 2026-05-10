@@ -22,13 +22,6 @@ const Navbar = () => {
 
           <Link
             to="/audit"
-            className="text-sm text-gray-600 transition hover:text-black"
-          >
-            Audit
-          </Link>
-
-          <Link
-            to="/audit"
             className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
           >
             Start Audit

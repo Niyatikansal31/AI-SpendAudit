@@ -1,5 +1,6 @@
 import runAudit from "../utils/auditEngine.js";
 import generateSummary from "../utils/generateSummary.js";
+import generateAISummary from "../utils/generateAISummary.js";
 import STATUS_CODES from "../utils/StatusCodes.js";
 import Report from "../models/Report.js";
 import crypto from "crypto"
@@ -17,7 +18,16 @@ const createReport=async (req,res)=>{
 
     try{
         const suggestion=runAudit(tools,teamSize,useCase)
-        const summary=generateSummary(suggestion)
+        let summary = await generateAISummary(
+            suggestion.recommendations,
+            suggestion.estimatedMonthlySavings,
+            suggestion.estimatedAnnualSavings,
+            suggestion.totalMonthlySpend
+            );
+
+            if (!summary) {
+            summary = generateSummary(suggestion);
+            }
 
         const publicId=crypto.randomUUID();
 
@@ -38,6 +48,7 @@ const createReport=async (req,res)=>{
             report
         })
     }catch(err){
+        console.log(err)
         res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
             success: false,
             msg: "Error displaying report!"
