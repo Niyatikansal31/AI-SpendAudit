@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 type ToolSpend = {
   toolName: string;
@@ -31,7 +32,10 @@ const AuditForm = () => {
       },
     ],
   };
+  const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const savedData = localStorage.getItem("audit-form-data");
   const initialData = savedData ? JSON.parse(savedData) : defaultFormData;
 
@@ -81,6 +85,40 @@ const AuditForm = () => {
     setTools(updatedTools);
   };
 
+  const handleGenerateAudit = async () => {
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:3000/api/reports", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tools,
+          teamSize,
+          useCase,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.msg || "Failed to generate audit");
+      }
+
+      navigate("/results", {
+        state: {
+          report: data.report,
+        },
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="bg-white text-slate-950">
       <section className="mx-auto max-w-5xl px-6 py-14">
@@ -239,12 +277,19 @@ const AuditForm = () => {
             + Add Tool
           </button>
 
+          {error && (
+            <p className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {error}
+            </p>
+          )}
           <button
             type="button"
-            className="rounded-md bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+            onClick={handleGenerateAudit}
+            disabled={loading}
+            className="rounded-md bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-400"
           >
-            Generate Audit
-          </button>
+            {loading ? "Generating..." : "Generate Audit"}
+        </button>
         </div>
       </section>
     </div>

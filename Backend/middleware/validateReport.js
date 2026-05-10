@@ -1,4 +1,4 @@
-import STATUS_CODES from "../utils/StatusCodes";
+import STATUS_CODES from "../utils/StatusCodes.js";
 
 const validateReport=(req,res,next)=>{
     const {tools, teamSize, useCase} =req.body;
