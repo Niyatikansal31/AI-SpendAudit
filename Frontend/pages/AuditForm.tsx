@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 type ToolSpend = {
   toolName: string;
@@ -19,18 +19,32 @@ const toolPlans: Record<string, string[]> = {
 };
 
 const AuditForm = () => {
-  const [teamSize, setTeamSize] = useState<number>(1);
-  const [useCase, setUseCase] = useState<string>("coding");
+  const defaultFormData = {
+    teamSize: 1,
+    useCase: "coding",
+    tools: [
+      {
+        toolName: "ChatGPT",
+        plan: "team",
+        seats: 1,
+        monthlySpend: 30,
+      },
+    ],
+  };
 
-  const [tools, setTools] = useState<ToolSpend[]>([
-    {
-      toolName: "ChatGPT",
-      plan: "team",
-      seats: 1,
-      monthlySpend: 30,
-    },
-  ]);
+  const savedData = localStorage.getItem("audit-form-data");
+  const initialData = savedData ? JSON.parse(savedData) : defaultFormData;
 
+  const [teamSize, setTeamSize] = useState<number>(initialData.teamSize);
+  const [useCase, setUseCase] = useState<string>(initialData.useCase);
+  const [tools, setTools] = useState<ToolSpend[]>(initialData.tools);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "audit-form-data",
+      JSON.stringify({ tools, teamSize, useCase })
+    );
+  }, [tools, teamSize, useCase]);
   const addTool = () => {
     setTools([
       ...tools,
@@ -94,7 +108,7 @@ const AuditForm = () => {
               <input
                 type="number"
                 min={1}
-                value={teamSize}
+                value={teamSize === 0 ? "" : teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
                 className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
               />
@@ -185,7 +199,7 @@ const AuditForm = () => {
                   <input
                     type="number"
                     min={1}
-                    value={tool.seats}
+                    value={tool.seats === 0 ? "" : tool.seats} 
                     onChange={(e) =>
                       updateTool(index, "seats", Number(e.target.value))
                     }
@@ -200,12 +214,12 @@ const AuditForm = () => {
                   <input
                     type="number"
                     min={0}
-                    value={tool.monthlySpend}
+                    value={tool.monthlySpend === 0 ? "" : tool.monthlySpend}
                     onChange={(e) =>
                       updateTool(
                         index,
                         "monthlySpend",
-                        Number(e.target.value)
+                        e.target.value === "" ? 0 : Number(e.target.value)
                       )
                     }
                     className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
