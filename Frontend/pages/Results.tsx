@@ -1,4 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
+import { useState } from "react";
 
 type Recommendation = {
   toolName: string;
@@ -22,6 +23,13 @@ const Results = () => {
   const location = useLocation();
 
   const report = location.state?.report as Report | undefined;
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [teamSize, setTeamSize] = useState("");
+  const [website, setWebsite] = useState("");
+  const [leadStatus, setLeadStatus] = useState("");
+  const [leadLoading, setLeadLoading] = useState(false);
 
   if (!report) {
     return (
@@ -45,6 +53,44 @@ const Results = () => {
 
   const reportLink = `${window.location.origin}/report/${report.publicId}`;
 
+  const submitLead = async () => {
+    setLeadStatus("");
+    setLeadLoading(true);
+    if (!email) {
+      setLeadStatus("Please enter your email.")
+      setLeadLoading(false);
+      return
+    }
+    
+    try {
+      const response = await fetch("http://localhost:3000/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          company,
+          role,
+          teamSize: teamSize ? Number(teamSize) : undefined,
+          reportId: report.publicId,
+          website,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.msg || "Could not save lead");
+      }
+
+      setLeadStatus("Report captured successfully.");
+    } catch (err) {
+      setLeadStatus(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setLeadLoading(false);
+    }
+  };
   const copyReportLink = async () => {
     await navigator.clipboard.writeText(reportLink);
     alert("Report link copied!");
@@ -182,6 +228,78 @@ const Results = () => {
             </p>
           </div>
         )}
+        <div className="mt-10 rounded-lg border border-slate-200 bg-slate-50 p-6">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold text-slate-950">
+            Capture this audit
+          </p>
+
+          <p className="mt-2 text-sm leading-6 text-slate-600">
+            Enter your email to save this report and get notified when new AI spend
+            optimizations apply to your stack.
+          </p>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+          />
+
+          <input
+            type="text"
+            placeholder="Company name"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+          />
+
+          <input
+            type="text"
+            placeholder="Role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+          />
+
+          <input
+            type="number"
+            placeholder="Team size"
+            value={teamSize}
+            onChange={(e) => setTeamSize(e.target.value)}
+            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+          />
+
+          <input
+            type="text"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={submitLead}
+            disabled={leadLoading}
+            className="rounded-md bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-400"
+          >
+            {leadLoading ? "Saving..." : "Save report"}
+          </button>
+
+          {leadStatus && (
+            <p className="text-sm text-slate-600">
+              {leadStatus}
+            </p>
+          )}
+        </div>
+      </div>
       </section>
     </div>
   );
