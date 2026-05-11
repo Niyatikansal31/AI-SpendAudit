@@ -228,6 +228,14 @@ const Results = () => {
               may be worth a deeper review to capture discounted AI credits and
               reduce recurring tooling costs.
             </p>
+            <a
+              href="https://credex.rocks"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-block rounded-md bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-200"
+            >
+              Book a Credex consultation
+            </a>
           </div>
         )}
         <div className="mt-10 rounded-lg border border-slate-200 bg-slate-50 p-6">

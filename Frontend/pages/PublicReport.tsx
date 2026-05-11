@@ -266,6 +266,14 @@ const PublicReport = () => {
               deeper review may help capture credits, reduce overlapping tools,
               and lower recurring AI spend.
             </p>
+            <a
+              href="https://credex.rocks"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-block rounded-md bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-200"
+            >
+              Book a Credex consultation
+            </a>
           </div>
         )}
       </section>
