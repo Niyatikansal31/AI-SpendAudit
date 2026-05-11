@@ -42,7 +42,7 @@ const PublicReport = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/api/reports/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/reports/${id}`);
         const data = await response.json();
 
         if (!response.ok) {
