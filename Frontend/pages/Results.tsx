@@ -30,6 +30,7 @@ const Results = () => {
   const [website, setWebsite] = useState("");
   const [leadStatus, setLeadStatus] = useState("");
   const [leadLoading, setLeadLoading] = useState(false);
+  const [sendEmail, setSendEmail] = useState(true);
 
   if (!report) {
     return (
@@ -75,6 +76,7 @@ const Results = () => {
           teamSize: teamSize ? Number(teamSize) : undefined,
           reportId: report.publicId,
           website,
+          sendEmail,
         }),
       });
 
@@ -282,7 +284,15 @@ const Results = () => {
             autoComplete="off"
           />
         </div>
+        <label className="flex items-center gap-2 text-sm text-slate-600">
+          <input
+            type="checkbox"
+            checked={sendEmail}
+            onChange={(e) => setSendEmail(e.target.checked)}
+          />
 
+          Email me this audit report
+        </label>
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <button
             type="button"
