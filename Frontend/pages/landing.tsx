@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
-    <div className="bg-white text-slate-950">
+    <div className="bg-[#f8fafc] text-slate-950">
       <section className="mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
@@ -16,7 +16,7 @@ const Landing = () => {
           <p className="mt-6 max-w-xl text-base leading-7 text-slate-600">
             SpendScope reviews subscriptions, API usage, plan fit, and team
             size to estimate practical savings across ChatGPT, Claude, Cursor,
-            Copilot, OpenAI, Anthropic, Gemini, Windsurf, and v0.
+            Copilot, OpenAI, Anthropic, Gemini, and v0.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

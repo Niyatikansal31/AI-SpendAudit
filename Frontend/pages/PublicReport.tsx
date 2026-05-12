@@ -97,7 +97,7 @@ const PublicReport = () => {
       : 0;
 
   return (
-    <div className="bg-white text-slate-950">
+    <div className="bg-[#f8fafc] text-slate-950">
       <section className="mx-auto max-w-6xl px-6 py-14">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

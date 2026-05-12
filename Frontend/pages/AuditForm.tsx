@@ -120,7 +120,7 @@ const AuditForm = () => {
     }
   };
   return (
-    <div className="bg-white text-slate-950">
+    <div className="bg-[#f8fafc] text-slate-950">
       <section className="mx-auto max-w-5xl px-6 py-14">
         <div className="mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
