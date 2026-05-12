@@ -107,7 +107,7 @@ const AuditForm = () => {
       if (!response.ok) {
         throw new Error(data.msg || "Failed to generate audit");
       }
-
+      localStorage.removeItem("audit-form-data");
       navigate("/results", {
         state: {
           report: data.report,

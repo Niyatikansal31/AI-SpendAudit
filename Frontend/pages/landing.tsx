@@ -14,7 +14,7 @@ const Landing = () => {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-7 text-slate-600">
-            AI Spend Audit reviews subscriptions, API usage, plan fit, and team
+            SpendScope reviews subscriptions, API usage, plan fit, and team
             size to estimate practical savings across ChatGPT, Claude, Cursor,
             Copilot, OpenAI, Anthropic, Gemini, Windsurf, and v0.
           </p>

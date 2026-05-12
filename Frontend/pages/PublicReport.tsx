@@ -116,12 +116,22 @@ const PublicReport = () => {
             </p>
           </div>
 
-          <Link
-            to="/audit"
-            className="rounded-md bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
-            Run your own audit
-          </Link>
+          <div className="no-print flex flex-wrap gap-3">
+            <Link
+              to="/audit"
+              className="rounded-md bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+            >
+              Run your own audit
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-50"
+            >
+              Export PDF
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
@@ -210,7 +220,7 @@ const PublicReport = () => {
                         </p>
                       </div>
 
-                      <div className="rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-950">
+                      <div className="no-print rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-950">
                         Save ${recommendation.savings}/mo
                       </div>
                     </div>
@@ -233,7 +243,7 @@ const PublicReport = () => {
               {report.tools.map((tool, index) => (
                 <div
                   key={index}
-                  className="rounded-md border border-slate-200 bg-white px-4 py-3"
+                  className="no-print rounded-md border border-slate-200 bg-white px-4 py-3"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-medium text-slate-950">

@@ -117,13 +117,23 @@ const Results = () => {
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={copyReportLink}
-            className="rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-50"
-          >
-            Copy report link
-          </button>
+          <div className="no-print flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={copyReportLink}
+              className="rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-50"
+            >
+              Copy report link
+            </button>
+
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-slate-50"
+            >
+              Export PDF
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -204,7 +214,7 @@ const Results = () => {
                       </p>
                     </div>
 
-                    <div className="rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-950">
+                    <div className="no-print rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-950">
                       Save ${recommendation.savings}/mo
                     </div>
                   </div>
@@ -238,7 +248,7 @@ const Results = () => {
             </a>
           </div>
         )}
-        <div className="mt-10 rounded-lg border border-slate-200 bg-slate-50 p-6">
+        <div className="no-print mt-10 rounded-lg border border-slate-200 bg-slate-50 p-6">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold text-slate-950">
             Capture this audit
@@ -256,7 +266,7 @@ const Results = () => {
             placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+            className="no-print rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
           />
 
           <input
@@ -264,7 +274,7 @@ const Results = () => {
             placeholder="Company name"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+            className="no-print rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
           />
 
           <input
@@ -272,7 +282,7 @@ const Results = () => {
             placeholder="Role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+            className="no-print rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
           />
 
           <input
@@ -280,7 +290,7 @@ const Results = () => {
             placeholder="Team size"
             value={teamSize}
             onChange={(e) => setTeamSize(e.target.value)}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
+            className="no-print rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-slate-950"
           />
 
           <input

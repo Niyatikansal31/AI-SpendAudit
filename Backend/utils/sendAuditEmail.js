@@ -13,13 +13,13 @@ const sendAuditEmail = async (
     const response = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: email,
-      subject: "Your AI Spend Audit Report are Ready",
+      subject: "Your SpendScope Report are Ready",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
           <h2>Your AI Spend Audit is Ready</h2>
 
           <p>
-            Thanks for using AI Spend Audit.
+            Thanks for using SpendScope.
           </p>
 
           <p>

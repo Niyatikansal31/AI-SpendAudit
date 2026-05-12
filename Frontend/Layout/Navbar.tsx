@@ -2,14 +2,14 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
   return (
-    <header className="border-b border-gray-200">
+    <header className="no-print border-b border-gray-200">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         
         <Link
           to="/"
           className="text-xl font-semibold tracking-tight text-black"
         >
-          AI Spend Audit
+          SpendScope
         </Link>
 
         <nav className="flex items-center gap-6">

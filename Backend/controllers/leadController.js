@@ -29,11 +29,13 @@ const createLead=async(req,res)=>{
             reportId
         })
         await newLead.save()
-        await sendAuditEmail(
+        if(sendEmail){
+            await sendAuditEmail(
             email,
             reportId,
             report.estimatedMonthlySavings
         );
+        } 
         res.status(STATUS_CODES.CREATED).json({
             success: true,
             newLead,
