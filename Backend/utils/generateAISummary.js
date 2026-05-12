@@ -1,6 +1,6 @@
-import OpenAI from "openai";
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+import Groq from "groq-sdk";
+const client = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 const generateAISummary = async (
@@ -44,7 +44,7 @@ const generateAISummary = async (
         `;
 
         const response = await client.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: "llama-3.3-70b-versatile",
         messages: [
             {
             role: "user",
