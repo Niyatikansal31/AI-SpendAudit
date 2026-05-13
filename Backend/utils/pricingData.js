@@ -1,7 +1,7 @@
 const pricingData = {
   ChatGPT: {
     plus: 20,
-    team: 30,
+    team: 25,
     enterprise: 60,
     api: 0
   },
@@ -23,7 +23,7 @@ const pricingData = {
     free: 0,
     pro: 20,
     max: 100,
-    team: 30,
+    team: 25,
     enterprise: 60,
     api: 0
   },
@@ -37,7 +37,7 @@ const pricingData = {
   },
 
   Gemini: {
-    pro: 10,
+    pro: 20,
     ultra: 30,
     api: 0
   },
