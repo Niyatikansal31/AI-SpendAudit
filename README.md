@@ -12,12 +12,8 @@ SpendScope is a free web app for startup founders and engineering managers to au
 ![alt text](image-4.png)
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+
 <video controls src="20260512-2104-20.9098805.mp4" title="Title"></video>
->
-> Suggested:
-> 1. Landing page
-> 2. Audit form filled out
-> 3. Results page with savings breakdown
  
 ---
  
